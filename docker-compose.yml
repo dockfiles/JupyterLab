@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  jupyter:
+    image: jupyter/scipy-notebook
+    container_name: jupyter
+    user: root
+    volumes:
+      - ./work:/home/jovyan/work
+      - persist_config:/home
+    environment:
+      CHOWN_HOME: 'yes'
+      CHOWN_HOME_OPTS: '-R'
+      GRANT_SUDO: 'yes'
+      NB_UID: 1000
+      NB_GID: 1000
+    ports:
+      - 10000:8888
+        
+volumes:
+  persist_config:
